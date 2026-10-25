@@ -1,0 +1,56 @@
+{
+  "mcpServers": {
+    "galileo-galilei-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "GALILEO",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "track_jovian_orbital_ephemeris",
+          "description": "Calculates precise orbital resonances and transit occultations of the Galilean satellites",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "epoch_timestamp": {
+                "type": "integer"
+              },
+              "target_satellite": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "epoch_timestamp"
+            ]
+          }
+        },
+        {
+          "name": "compute_parabolic_kinematics",
+          "description": "Models acceleration due to gravity, inclined plane dynamics and friction-compensated projectile motion",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "launch_velocity": {
+                "type": "number"
+              },
+              "elevation_deg": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "launch_velocity"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
